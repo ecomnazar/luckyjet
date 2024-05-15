@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'rocket';
+    src: url('/4.woff2') format('woff2'),
+         url('/Rocket.otf') format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  body {
+    font-family: 'rocket', sans-serif;
+  }
+
+@keyframes moveClouds {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .clouds {
+    animation: moveClouds 40s linear infinite;
+    z-index: 1;
+  }
+
+  @keyframes moveBoy {
+    0% {
+      transform: translateX(-10px) translateY(0);
+    }
+    25% {
+      transform: translateX(10px) translateY(0);
+    }
+    50% {
+      transform: translateX(10px) translateY(4px);
+    }
+    75% {
+      transform: translateX(-10px) translateY(4px);
+    }
+    100% {
+      transform: translateX(-10px) translateY(0);
+    }
+  }
+  @keyframes moveFireBoy {
+    0% {
+        bottom: 0;
+        left: 0;
+    }
+    100% {
+        bottom: 25%;
+        left: 70%;
+    }
+}
+
+/* if finish */
+/* @keyframes moveDiv {
+  0% {
+      bottom: 25%;
+      left: 70%;
+  }
+  100% {
+      bottom: 350%;
+      left: 140%;
+  }
+}  */
+
+@keyframes moveDiv {
+  0% {
+      transform: translateX(0%) translateY(0%);
+      bottom: 25%;
+        left: 70%;
+    }
+  100% {
+      transform: translateX(440%) translateY(-200%);
+      bottom: 25%;
+        left: 70%;
+  }
+}
+
+.finish {
+  animation: moveDiv 0.5s linear;
+  animation-fill-mode: forwards;
+}
+
+.animate-moveFireBoy {
+    animation: moveFireBoy 1.5s linear;
+    animation-fill-mode: forwards;
+}
+
+.boy {
+  animation: moveBoy 3s linear infinite;
+}
