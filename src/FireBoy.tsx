@@ -6,8 +6,6 @@ interface Props {
 }
 
 export const FireBoy: React.FC<Props> = ({ isFinished }) => {
-    console.log(isFinished);
-
     return (
         <div className={clsx('absolute z-[999]', {
             'finish': isFinished,

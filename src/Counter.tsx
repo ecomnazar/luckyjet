@@ -5,9 +5,10 @@ interface Props {
     targetTime: string
     duration: number
     handleFinish: () => void
+    setCoff: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const Counter: React.FC<Props> = ({ targetTime, duration, handleFinish }) => {
+export const Counter: React.FC<Props> = ({ targetTime, duration, handleFinish, setCoff }) => {
     const [count, setCount] = React.useState(100);
     const [isPaused, setIsPaused] = React.useState(false);
     const [showFliedText, setShowFliedText] = React.useState(false)
@@ -15,6 +16,8 @@ export const Counter: React.FC<Props> = ({ targetTime, duration, handleFinish })
 
     const minutes = Math.floor(count / 100);
     const seconds = count % 100;
+
+    setCoff(`${minutes}.${seconds.toString().padStart(2, '0')}`)
 
     const targetCount = parseInt(targetTime.split('.')[0]) * 100 + parseInt(targetTime.split('.')[1]);
 
@@ -48,7 +51,6 @@ export const Counter: React.FC<Props> = ({ targetTime, duration, handleFinish })
 
         return () => clearInterval(timer); // cleanup on unmount
     }, [isPaused])
-
 
     return <div className='text-center'>
         <h3 className='text-[#944ef5] text-[70px] font-sans font-bold'>x{`${minutes}.${seconds.toString().padStart(2, '0')}`}</h3>
