@@ -71,11 +71,11 @@ export const BetSelector: React.FC<Props> = ({ value, setValue, setIsBetStarted,
 
                         {!isBetStarted && <button onClick={() => setIsBetStarted(true)} className=' text-white flex items-center justify-center text-[18px] bg-gradient-to-br from-[#5A2BF2] via-[#7847E7] to-[#8850ED] w-full h-full rounded-lg'>BAHIS</button>}
 
-                        {isBetStarted && !showComplete && !showWinningBetAmount && <button className=' text-white flex items-center justify-center text-[18px] bg-gradient-to-br from-[#EA496B] via-[#EB6382] to-[#EC688D] w-full h-full rounded-lg'>Отменить</button>}
-                        {isBetStarted && showComplete && <button className=' text-white flex items-center justify-center text-[18px] bg-[#1A1534] w-full h-full rounded-lg'>Ожидание</button>}
+                        {isBetStarted && !showComplete && !showWinningBetAmount && <button className=' text-white flex items-center justify-center text-[18px] bg-gradient-to-br from-[#EA496B] via-[#EB6382] to-[#EC688D] w-full h-full rounded-lg'>IPTAL ET</button>}
+                        {isBetStarted && showComplete && <button className=' text-white flex items-center justify-center text-[18px] bg-[#1A1534] w-full h-full rounded-lg'>BEKLEYEN</button>}
                         {isBetStarted && !showComplete && showWinningBetAmount && <button onClick={handleStopBet} className='-space-y-1 text-white flex flex-col items-center justify-center text-[18px] bg-gradient-to-br from-[#F09243] via-[#F2B567] to-[#F7D76F] w-full h-full rounded-lg'>
                             <h4 className='text-[15px]'>{valueWithCoff.toFixed(2)} $</h4>
-                            <h4>Забрать</h4>
+                            <h4>AL</h4>
                         </button>}
                     </div>
                 </div>
