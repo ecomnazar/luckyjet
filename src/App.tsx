@@ -15,6 +15,7 @@ import { getAccessToken } from './localstorage'
 import { useNavigate } from 'react-router-dom'
 import { randomUsers } from './users'
 import clsx from 'clsx'
+import { Line } from './Line'
 
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
   const [isFinished, setIsFinished] = React.useState(false)
   const [showComplete, setShowComplete] = React.useState(false)
   const [isStarted, setIsStarted] = React.useState(false)
-  const [targetTime, setTargetTime] = React.useState(['2.45'] as string[])
+  const [targetTime, setTargetTime] = React.useState(['2.55', '2.55', '2.55', '2.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55', '5.55'] as string[])
   const [value, setValue] = React.useState('')
   const [gameCount, setGameCount] = React.useState(0)
   const [historyBets, setHistoryBets] = React.useState([] as number[])
@@ -34,7 +35,6 @@ const App = () => {
   const [isFirstBetStarted, setIsFirstBetStarted] = React.useState(false)
   const [isSecondBetStarted, setIsSecondBetStarted] = React.useState(false)
   const [showWinningBetAmount, setShowWinningBetAmount] = React.useState(false)
-  const [betHistory, setBetHistory] = React.useState(0)
 
   const [showFirstWinPopup, setShowFirstWinPopup] = React.useState({ show: false, amount: 0, coff: 0 })
   const [showSecondWinPopup, setShowSecondWinPopup] = React.useState({ show: false, amount: 0, coff: 0 })
@@ -50,10 +50,12 @@ const App = () => {
     if (isFirstBetStarted || isSecondBetStarted) {
       setShowWinningBetAmount(true)
     }
+    console.log(isFirstBetStarted);
+
     if (showWinningBetAmount) {
-      setShowWinningBetAmount(false)
-      setIsFirstBetStarted(false)
-      setIsSecondBetStarted(false)
+      // setShowWinningBetAmount(false)
+      // setIsFirstBetStarted(false)
+      // setIsSecondBetStarted(false)
     }
     setIsStarted(true)
     setShowComplete(false)
@@ -62,15 +64,19 @@ const App = () => {
 
   const handleFinish = () => {
     const sliced = Number(firstValue.slice(0, -1))
-    if (showWinningBetAmount) {
-      if (firstValue !== '0.2 ₺' && isFirstBetStarted) {
-        setBalance((prev) => prev - sliced)
-      }
-      if (secondValue !== '0.2 ₺' && isSecondBetStarted) {
-        setBalance((prev) => prev - sliced)
-      }
+
+    if (firstValue !== '0.2 ₺' && isFirstBetStarted) {
+      setBalance((prev) => prev - sliced)
+      setIsFirstBetStarted(false)
+    }
+    if (secondValue !== '0.2 ₺' && isSecondBetStarted) {
+      setBalance((prev) => prev - sliced)
+      setIsSecondBetStarted(false)
+
+
     }
 
+    setShowWinningBetAmount(false)
     setHistoryBets([Number(targetTime[gameCount]), ...historyBets])
     setIsFinished(true)
     setGameCount(gameCount + 1)
@@ -88,8 +94,6 @@ const App = () => {
     if (number === '1') {
       setIsFirstBetStarted(false)
       setBalance((prev) => prev + (Number(coff) * sliced))
-      console.log(sliced);
-
       setShowFirstWinPopup({ show: true, amount: sliced, coff: Number(coff) })
       const timer = setTimeout(() => {
         setShowFirstWinPopup({ show: false, amount: 0, coff: 0 })
@@ -118,6 +122,7 @@ const App = () => {
 
   const handleStart = () => {
     setIsStarted(true)
+    setTargetTime([...targetTime, '2.45'])
   }
 
   React.useEffect(() => {
@@ -129,6 +134,18 @@ const App = () => {
     const token = getAccessToken()
     if (!token) navigate('/login')
   }, [])
+
+
+  if (!isStarted) {
+    return <StarterComponents
+      handleAdd={handleAdd}
+      handleStart={handleStart}
+      setBalance={setBalance}
+      setValue={setValue}
+      targetTime={targetTime}
+      value={value}
+    />
+  }
 
 
   return (
@@ -146,7 +163,7 @@ const App = () => {
             <div className='w-[74%] border-b border-[#1B1535] h-[70px] flex items-center justify-end'>
               <div className='text-right'>
                 <h2 className='text-[#e3e3e3]'>Баланс</h2>
-                <h4 className='text-white'>{balance}₺</h4>
+                <h4 className='text-white'>{balance.toFixed(2)}₺</h4>
               </div>
               <img src='/left4.png' className='w-[420px]' />
             </div>
@@ -214,31 +231,22 @@ const App = () => {
 
               <WinPopup firstWinPopup={showFirstWinPopup} secondWinPopup={showSecondWinPopup} />
 
-              {
-                !isStarted ? <StarterComponents
-                  betHistory={betHistory}
-                  handleAdd={handleAdd}
-                  handleStart={handleStart}
-                  historyBets={historyBets}
-                  setBalance={setBalance}
-                  setHistoryBets={setHistoryBets}
-                  setValue={setValue}
-                  targetTime={targetTime}
-                  value={value}
-                  setBetHistory={setBetHistory}
-                /> : <>
-                  {!showComplete ?
-                    <div className='h-[64vh] relative flex items-end w-full overflow-hidden'>
-                      <FireBoy isFinished={isFinished} />
-                      <div className='absolute top-[25%] left-1/2 -translate-x-1/2'>
-                        <Counter setCounter={setCounter} balance={balance} targetTime={targetTime[gameCount]} duration={30} handleFinish={handleFinish} setCoff={setCoff} />
-                      </div>
-                      <BottomClouds />
-                    </div> :
-                    <WaitingSection handleWaitingEnd={handleWaitingEnd} />
-                  }
-                </>
-              }
+              <>
+                {!showComplete ?
+                  <div className='h-[64vh] relative flex items-end w-full overflow-hidden'>
+                    <FireBoy isFinished={isFinished} />
+
+                    <Line isFinished={isFinished} />
+
+
+                    <div className='absolute top-[25%] left-1/2 -translate-x-1/2'>
+                      <Counter setCounter={setCounter} balance={balance} targetTime={targetTime[gameCount]} duration={30} handleFinish={handleFinish} setCoff={setCoff} />
+                    </div>
+                    <BottomClouds />
+                  </div> :
+                  <WaitingSection handleWaitingEnd={handleWaitingEnd} isFirstBetStarted={isFirstBetStarted} isSecondBetStarted={isSecondBetStarted} />
+                }
+              </>
 
 
 

@@ -20,7 +20,7 @@ export const WinPopup: React.FC<Props> = ({ firstWinPopup, secondWinPopup }) => 
                     <h3 className='text-white text-[19px]'>x{firstWinPopup.coff}</h3>
                 </div>
                 <div className='bg-gradient-to-r from-[#592AF2] via-[#713DF0] to-[#8850ED] h-[90%] w-1/2 rounded-xl flex flex-col items-center justify-center'>
-                    <h4 className='text-white text-[17px]'>{firstWinPopup.amount * firstWinPopup.coff} ₺</h4>
+                    <h4 className='text-white text-[17px]'>{(firstWinPopup.amount * firstWinPopup.coff).toFixed(2)} ₺</h4>
                     <p className='text-white text-[13px] font-normal font-sans'>Kazanciniz</p>
                 </div>
             </div>

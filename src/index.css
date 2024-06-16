@@ -81,6 +81,18 @@
   }
 }
 
+@keyframes moveLine {
+  0% {
+    left: -65%;
+    bottom: -2%;
+}
+100% {
+    bottom: 8%;
+    left: 0%;
+}
+  
+}
+
 .finish {
   animation: moveDiv 0.5s linear;
   animation-fill-mode: forwards;
@@ -89,6 +101,11 @@
 .animate-moveFireBoy {
     animation: moveFireBoy 1.5s linear;
     animation-fill-mode: forwards;
+}
+
+.animate-moveLine {
+  animation: moveLine 1.5s linear;
+  animation-fill-mode: forwards;
 }
 
 .boy {

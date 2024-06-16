@@ -2,9 +2,11 @@ import React from 'react'
 
 interface Props {
     handleWaitingEnd: () => void
+    isFirstBetStarted: boolean
+    isSecondBetStarted: boolean
 }
 
-export const WaitingSection: React.FC<Props> = ({ handleWaitingEnd }) => {
+export const WaitingSection: React.FC<Props> = ({ handleWaitingEnd, isFirstBetStarted, isSecondBetStarted }) => {
 
     const [percent, setPercent] = React.useState(100)
 
@@ -19,7 +21,7 @@ export const WaitingSection: React.FC<Props> = ({ handleWaitingEnd }) => {
                 return prev - 1
             })
         }, 40)
-    }, [])
+    }, [isFirstBetStarted, isSecondBetStarted])
 
     return (
         <div className='h-[64vh] flex flex-col items-center justify-center'>
