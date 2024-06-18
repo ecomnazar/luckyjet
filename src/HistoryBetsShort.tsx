@@ -9,7 +9,7 @@ interface Props {
 
 export const HistoryBetsShort: React.FC<Props> = ({ historyBets, setHistoryBetFull }) => {
     return (
-        <div className='flex items-center absolute w-full top-0 left-0 p-3 space-x-2 overflow-scroll'>
+        <div className='flex items-center absolute z-[999] w-full top-0 left-0 p-3 space-x-2 overflow-scroll'>
             {historyBets.map((item, idx) => {
                 return <div className={clsx('text-white font-normal rounded-md font-sans text-[12px] py-1.5 px-3', {
                     'bg-[#8351D4]': idx % 2 === 0,
