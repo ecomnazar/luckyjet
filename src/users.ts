@@ -18,7 +18,7 @@ export const randomUsers = () => {
       amount: parseFloat((Math.random() * 1000).toFixed(2)), // This will generate a random float number between 0 and 1000
       color: "#" + Math.floor(Math.random() * 16777215).toString(16), // This will generate a random hex color
       isFinished: false,
-      finishedCoff: parseFloat((Math.random() * 50 + 1).toFixed(2)),
+      finishedCoff: parseFloat((Math.random() * 25 + 1).toFixed(2)),
     });
   }
   return users;
