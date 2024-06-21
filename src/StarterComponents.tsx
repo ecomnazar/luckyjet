@@ -1,4 +1,6 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
+import longMusic from '../public/music/longMusic.mp3'
 
 interface Props {
     targetTime: string[]
@@ -10,10 +12,21 @@ interface Props {
 }
 
 export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value, handleAdd, handleStart, setBalance }) => {
+    const { i18n } = useTranslation()
+    const audio = new Audio(longMusic)
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
         handleAdd()
+    }
+
+    const onStart = (lang: string) => {
+        i18n.changeLanguage(lang)
+        audio.play();
+        handleStart()
+        audio.addEventListener('ended', () => {
+            audio.play()
+        })
     }
 
     return (
@@ -29,7 +42,11 @@ export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value
                         <div>
                             <input placeholder='balance' className='mt-2 w-full rounded-md p-2' onChange={(e) => setBalance(Number(e.target.value))} />
                         </div>
-                        <button onClick={handleStart} className='bg-white mt-2 rounded-md p-2 w-full'>Start Game!</button>
+                        <div className=''>
+                            <button onClick={() => onStart('tr')} className='bg-white mt-2 rounded-md p-2 w-full'>START (TURKEY)</button>
+                            <button onClick={() => onStart('es')} className='bg-white mt-2 rounded-md p-2 w-full'>START (SPAIN)</button>
+
+                        </div>
                     </div>
                     <div>
                         <h3>Coefficentes list:</h3>

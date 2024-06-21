@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 interface Props {
     value: string;
@@ -14,6 +15,7 @@ interface Props {
 
 
 export const BetSelector: React.FC<Props> = ({ value, setValue, setIsBetStarted, isBetStarted, showComplete, showWinningBetAmount, coff, handleStop, index }) => {
+    const { t } = useTranslation()
 
     const valueWithCoff = Number(coff) * Number(value.slice(0, -1))
 
@@ -32,13 +34,13 @@ export const BetSelector: React.FC<Props> = ({ value, setValue, setIsBetStarted,
                                 <div className='bg-[#1A1533] w-6 h-6 rounded-md flex items-center justify-center'>
                                     <div className='bg-[#251F4A] w-[18px] h-[18px] rounded-md'></div>
                                 </div>
-                                <h4 className='text-white font-sans font-medium text-[12px]'>Oto bahis</h4>
+                                <h4 className='text-white font-sans font-medium text-[12px]'>{t('otoBahis')}</h4>
                             </div>
                             <div className='flex items-center gap-x-2'>
                                 <div className='bg-[#1A1533] w-6 h-6 rounded-md flex items-center justify-center'>
                                     <div className='bg-[#251F4A] w-[18px] h-[18px] rounded-md'></div>
                                 </div>
-                                <h4 className='text-white font-sans font-medium text-[12px]'>Oto para cekme</h4>
+                                <h4 className='text-white font-sans font-medium text-[12px]'>{t('otoParaCekme')}</h4>
                             </div>
                         </div>
                         <div className='bg-[#191433] w-[120px] py-[5.5px] rounded-md flex items-center justify-center'>
@@ -67,15 +69,12 @@ export const BetSelector: React.FC<Props> = ({ value, setValue, setIsBetStarted,
                     </div>
                     {/* #EA496B */}
                     <div className='basis-[49.5%] h-[60%] rounded-lg bg-[#1A1534] p-1 flex items-center justify-center'>
-
-
-                        {!isBetStarted && <button onClick={() => setIsBetStarted(true)} className=' text-white flex items-center justify-center text-[18px] bg-gradient-to-br from-[#5A2BF2] via-[#7847E7] to-[#8850ED] w-full h-full rounded-lg'>BAHIS</button>}
-
-                        {isBetStarted && !showComplete && !showWinningBetAmount && <button className=' text-white flex items-center justify-center text-[18px] bg-gradient-to-br from-[#EA496B] via-[#EB6382] to-[#EC688D] w-full h-full rounded-lg'>IPTAL ET</button>}
-                        {isBetStarted && showComplete && <button className=' text-white flex items-center justify-center text-[18px] bg-[#1A1534] w-full h-full rounded-lg'>BEKLEYEN</button>}
+                        {!isBetStarted && <button onClick={() => setIsBetStarted(true)} className=' text-white flex items-center justify-center text-[18px] bg-gradient-to-br from-[#5A2BF2] via-[#7847E7] to-[#8850ED] w-full h-full rounded-lg'>{t('bahis')}</button>}
+                        {isBetStarted && !showComplete && !showWinningBetAmount && <button className=' text-white flex items-center justify-center text-[18px] bg-gradient-to-br from-[#EA496B] via-[#EB6382] to-[#EC688D] w-full h-full rounded-lg'>{t('iptalEt')}</button>}
+                        {isBetStarted && showComplete && <button className=' text-white flex items-center justify-center text-[18px] bg-[#1A1534] w-full h-full rounded-lg'>{t('bekleyen')}</button>}
                         {isBetStarted && !showComplete && showWinningBetAmount && <button onClick={handleStopBet} className='-space-y-1 text-white flex flex-col items-center justify-center text-[18px] bg-gradient-to-br from-[#F09243] via-[#F2B567] to-[#F7D76F] w-full h-full rounded-lg'>
                             <h4 className='text-[15px]'>{valueWithCoff.toFixed(2)} ₺</h4>
-                            <h4>AL</h4>
+                            <h4>{t('al')}</h4>
                         </button>}
                     </div>
                 </div>

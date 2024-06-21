@@ -1,5 +1,8 @@
 import clsx from 'clsx';
 import React from 'react'
+import { useTranslation } from 'react-i18next';
+import endMusic from '../public/music/end.mp3'
+
 
 interface Props {
     targetTime: string
@@ -11,12 +14,16 @@ interface Props {
 }
 
 export const Counter: React.FC<Props> = ({ targetTime, duration, handleFinish, setCoff, balance, setCounter }) => {
+    const { t } = useTranslation()
     const [count, setCount] = React.useState(100);
     const [isPaused, setIsPaused] = React.useState(false);
     const [showFliedText, setShowFliedText] = React.useState(false)
 
     const minutes = Math.floor(count / 100);
     const seconds = count % 100;
+
+    const endSong = new Audio(endMusic)
+
 
     setCoff(`${minutes}.${seconds.toString().padStart(2, '0')}`)
 
@@ -39,6 +46,8 @@ export const Counter: React.FC<Props> = ({ targetTime, duration, handleFinish, s
                 } else {
                     clearInterval(timer);
                     setIsPaused(true);
+                    endSong.play()
+
                     setTimeout(() => {
                         // setIsPaused(false);
                         // setCount(1);
@@ -60,6 +69,6 @@ export const Counter: React.FC<Props> = ({ targetTime, duration, handleFinish, s
         <h3 className={clsx('text-white text-[40px] font-sans font-normal transition-all duration-75', {
             'visible translate-y-[0px]': showFliedText,
             'invisible translate-y-[40px]': !showFliedText
-        })}>Uçtu</h3>
+        })}>{t('uctu')}</h3>
     </div>
 };

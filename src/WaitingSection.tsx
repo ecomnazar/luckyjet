@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
     handleWaitingEnd: () => void
@@ -8,6 +9,7 @@ interface Props {
 
 export const WaitingSection: React.FC<Props> = ({ handleWaitingEnd, isFirstBetStarted, isSecondBetStarted }) => {
 
+    const { t } = useTranslation()
     const [percent, setPercent] = React.useState(100)
 
     React.useEffect(() => {
@@ -26,7 +28,7 @@ export const WaitingSection: React.FC<Props> = ({ handleWaitingEnd, isFirstBetSt
     return (
         <div className='h-[64vh] flex flex-col items-center justify-center'>
             <img className='w-48' src='/rocket-spinner.svg' />
-            <h2 className='text-white text-[28px] uppercase text-center mt-4 tracking-1'>Sonraki turu <br />bekleme</h2>
+            <h2 className='text-white text-[28px] uppercase text-center mt-4 tracking-1 max-w-[300px] mx-auto'>{t('sonrakiTuruBekleme')}</h2>
             <div className='w-[250px] h-[6px] mt-6 rounded-full bg-[#2C283C]'>
                 <div style={{ width: `${percent}%` }} className='h-full rounded-full bg-[#8B52EC]' />
             </div>
