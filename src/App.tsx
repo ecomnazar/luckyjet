@@ -36,8 +36,8 @@ const App = () => {
   const startSong = new Audio(startMusic)
 
   const [coff, setCoff] = React.useState('')
-  const [firstValue, setFirstValue] = React.useState(`0.2 ${t('currency')}`)
-  const [secondValue, setSecondValue] = React.useState(`0.2 ${t('currency')}`)
+  const [firstValue, setFirstValue] = React.useState(`0.2`)
+  const [secondValue, setSecondValue] = React.useState(`0.2`)
   const [isFirstBetStarted, setIsFirstBetStarted] = React.useState(false)
   const [isSecondBetStarted, setIsSecondBetStarted] = React.useState(false)
   const [showWinningBetAmount, setShowWinningBetAmount] = React.useState(false)
@@ -134,6 +134,8 @@ const App = () => {
   }
 
   const handleStart = () => {
+    setFirstValue(`0.2 ${i18n.language === 'tr' ? '₺' : '$'}`)
+    setSecondValue(`0.2 ${i18n.language === 'tr' ? '₺' : '$'}`)
     setIsStarted(true)
     setTargetTime([...targetTime, '2.45'])
   }
@@ -147,7 +149,6 @@ const App = () => {
     const token = getAccessToken()
     if (!token) navigate('/login')
   }, [])
-
 
   if (!isStarted) {
     return <StarterComponents

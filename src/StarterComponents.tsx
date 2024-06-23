@@ -48,7 +48,7 @@ export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value
 
                         </div>
                     </div>
-                    <div>
+                    <div className='h-[500px] overflow-scroll'>
                         <h3>Coefficentes list:</h3>
                         {targetTime.map((item, idx) => {
                             return <div className='text-black' key={idx}>{item}</div>
