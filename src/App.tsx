@@ -134,8 +134,8 @@ const App = () => {
   }
 
   const handleStart = () => {
-    setFirstValue(`0.2 ${i18n.language === 'tr' ? '₺' : '$'}`)
-    setSecondValue(`0.2 ${i18n.language === 'tr' ? '₺' : '$'}`)
+    setFirstValue(`0.2 ${i18n.language === 'tr' ? '₺' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'pt' ? 'R$' : i18n.language === 'enphp' ? 'PHP' : '$'}`)
+    setSecondValue(`0.2 ${i18n.language === 'tr' ? '₺' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'pt' ? 'R$' : i18n.language === 'enphp' ? 'PHP' : '$'}`)
     setIsStarted(true)
     setTargetTime([...targetTime, '2.45'])
   }
@@ -161,11 +161,16 @@ const App = () => {
     />
   }
 
+
   return (
     <div className='w-screen h-screen bg-[#0A0F1D] pt-2'>
       {/* #121728 */}
       <div className='px-3'>
-        <img src={`/header${i18n.language === 'tr' ? 'Tr' : 'Es'}.png`} />
+        <img src={
+
+          `/header${i18n.language === 'tr' ? 'Tr' : i18n.language === 'pt' ? 'Pt' : i18n.language === 'uz' ? 'Uz' : i18n.language === 'fr' ? 'Fr' : i18n.language === 'es' ? 'Es' : 'Eng'
+
+          }.png`} />
       </div>
       <div className='mx-4 mb-2 rounded-xl mt-0  bg-[#121728] py-1 px-2 flex items-center gap-x-1'>
         <img src='/1winlogo.png' className='w-[65px]' />
@@ -225,7 +230,7 @@ const App = () => {
             <li>
               <div className='bg-[#252D43] p-1 flex gap-x-2 rounded-xl pl-2'>
                 <div className='flex flex-col items-end'>
-                  <div className='flex items-center gap-x-1 text-[#97A5CA] font-sans text-[12px]'>{i18n.language === 'tr' ? 'TRY' : 'USD'}</div>
+                  <div className='flex items-center gap-x-1 text-[#97A5CA] font-sans text-[12px]'>{i18n.language === 'tr' ? 'TRY' : i18n.language === 'pt' ? 'R$' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'en' ? '$' : i18n.language === 'enphp' ? 'PHP' : 'USD'}</div>
                   <p className='text-white font-sans text-[14px]'>{balance.toFixed(2)}</p>
                 </div>
                 <div className='bg-[#50A761] text-white font-sans rounded-lg p-2 text-[13px]'>{t('paraYatir')}</div>
@@ -238,7 +243,7 @@ const App = () => {
       {/* <img className='w-full' src='/header.jpeg' /> */}
       <div className='flex items-start justify-between h-[88vh]'>
         <div className='w-[16%] overflow-y-scroll bg-[#151B2E] h-full rounded-[14px] ml-4'>
-          <img src={`/${i18n.language === 'tr' ? 'left' : 'leftEs1'}.png`} className='w-full object-cover' />
+          <img src={`/${i18n.language === 'tr' ? 'left' : i18n.language === 'pt' ? 'leftPt' : i18n.language === 'uz' ? 'leftUz' : i18n.language === 'fr' ? 'leftFr' : i18n.language === 'es' ? 'leftEs1' : 'leftEng'}.png`} className='w-full object-cover' />
         </div>
         <div className='bg-[#141026] w-[83%] mr-4 h-[88vh] overflow-hidden ml-4'>
           <div className='flex items-start'>
