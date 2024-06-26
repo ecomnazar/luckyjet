@@ -17,7 +17,8 @@ interface Props {
 export const BetSelector: React.FC<Props> = ({ value, setValue, setIsBetStarted, isBetStarted, showComplete, showWinningBetAmount, coff, handleStop, index }) => {
     const { t } = useTranslation()
 
-    const valueWithCoff = Number(coff) * Number(value.slice(0, -1))
+    const valueWithCoff = Number(coff) * Number(value.split(' ')[0])
+
 
     const handleStopBet = () => {
         // setIsBetStarted(false)
