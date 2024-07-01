@@ -135,8 +135,8 @@ const App = () => {
   }
 
   const handleStart = () => {
-    setFirstValue(`0.2 ${i18n.language === 'tr' ? '₺' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'pt' ? 'R$' : i18n.language === 'enphp' ? 'PHP' : i18n.language === 'es' ? 'AR$' : '$'}`)
-    setSecondValue(`0.2 ${i18n.language === 'tr' ? '₺' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'pt' ? 'R$' : i18n.language === 'enphp' ? 'PHP' : i18n.language === 'es' ? 'AR$' : '$'}`)
+    setFirstValue(`0.2 ${i18n.language === 'tr' ? '₺' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'pt' ? 'R$' : i18n.language === 'enphp' ? 'PHP' : i18n.language === 'estwo' ? 'AR$' : '$'}`)
+    setSecondValue(`0.2 ${i18n.language === 'tr' ? '₺' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'pt' ? 'R$' : i18n.language === 'enphp' ? 'PHP' : i18n.language === 'estwo' ? 'AR$' : '$'}`)
     setIsStarted(true)
     setTargetTime([...targetTime, '2.45'])
   }
@@ -230,7 +230,7 @@ const App = () => {
             <li>
               <div className='bg-[#252D43] p-1 flex gap-x-2 rounded-xl pl-2'>
                 <div className='flex flex-col items-end'>
-                  <div className='flex items-center gap-x-1 text-[#97A5CA] font-sans text-[12px]'>{i18n.language === 'tr' ? 'TRY' : i18n.language === 'pt' ? 'BRL' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'en' ? '$' : i18n.language === 'enphp' ? 'PHP' : 'USD'}</div>
+                  <div className='flex items-center gap-x-1 text-[#97A5CA] font-sans text-[12px]'>{i18n.language === 'tr' ? 'TRY' : i18n.language === 'pt' ? 'BRL' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'en' ? '$' : i18n.language === 'enphp' ? 'PHP' : i18n.language === 'es' ? '$' : i18n.language === 'estwo' ? 'AR$' : 'USD'}</div>
                   <p className='text-white font-sans text-[14px]'>{formatBalance(Number(balance))}</p>
                 </div>
                 <div className='bg-[#50A761] text-white font-sans rounded-lg p-2 text-[13px]'>{t('paraYatir')}</div>

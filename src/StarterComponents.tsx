@@ -44,7 +44,8 @@ export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value
                         </div>
                         <div className=''>
                             <button onClick={() => onStart('tr')} className='bg-white mt-2 rounded-md p-2 w-full'>START (TURKEY)</button>
-                            <button onClick={() => onStart('es')} className='bg-white mt-2 rounded-md p-2 w-full'>START (SPAIN AR$)</button>
+                            <button onClick={() => onStart('es')} className='bg-white mt-2 rounded-md p-2 w-full'>START (SPAIN $)</button>
+                            <button onClick={() => onStart('estwo')} className='bg-white mt-2 rounded-md p-2 w-full'>START (SPAIN AR$)</button>
                             <button onClick={() => onStart('pt')} className='bg-white mt-2 rounded-md p-2 w-full'>START (PORTUGAL R$)</button>
                             <button onClick={() => onStart('uz')} className='bg-white mt-2 rounded-md p-2 w-full'>START (UZBEK)</button>
                             <button onClick={() => onStart('fr')} className='bg-white mt-2 rounded-md p-2 w-full'>START (FRANCY)</button>
