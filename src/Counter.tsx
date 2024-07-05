@@ -11,13 +11,16 @@ interface Props {
     setCoff: React.Dispatch<React.SetStateAction<string>>
     balance: number
     setCounter: React.Dispatch<React.SetStateAction<number>>
+    isMobile?: boolean
 }
 
-export const Counter: React.FC<Props> = ({ targetTime, duration, handleFinish, setCoff, balance, setCounter }) => {
+export const Counter: React.FC<Props> = ({ targetTime, duration, handleFinish, setCoff, balance, setCounter, isMobile = false }) => {
     const { t } = useTranslation()
     const [count, setCount] = React.useState(100);
     const [isPaused, setIsPaused] = React.useState(false);
     const [showFliedText, setShowFliedText] = React.useState(false)
+    console.log(isMobile);
+
 
     const minutes = Math.floor(count / 100);
     const seconds = count % 100;
@@ -64,7 +67,7 @@ export const Counter: React.FC<Props> = ({ targetTime, duration, handleFinish, s
         return () => clearInterval(timer); // cleanup on unmount
     }, [isPaused, balance])
 
-    return <div className='text-center'>
+    return <div className='relative z-[9999] text-center'>
         <h3 className='text-[#944ef5] text-[70px] font-sans font-bold'>x{`${minutes}.${seconds.toString().padStart(2, '0')}`}</h3>
         <h3 className={clsx('text-white text-[40px] font-sans font-normal transition-all duration-75', {
             'visible translate-y-[0px]': showFliedText,

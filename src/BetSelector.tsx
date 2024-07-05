@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 
@@ -11,10 +12,11 @@ interface Props {
     coff: string
     handleStop: (number: '1' | '2') => void
     index: '1' | '2'
+    isMobile?: boolean
 }
 
 
-export const BetSelector: React.FC<Props> = ({ value, setValue, setIsBetStarted, isBetStarted, showComplete, showWinningBetAmount, coff, handleStop, index }) => {
+export const BetSelector: React.FC<Props> = ({ value, setValue, setIsBetStarted, isBetStarted, showComplete, showWinningBetAmount, coff, handleStop, index, isMobile = false }) => {
     const { t } = useTranslation()
 
     const valueWithCoff = Number(coff) * Number(value.split(' ')[0])
@@ -50,15 +52,18 @@ export const BetSelector: React.FC<Props> = ({ value, setValue, setIsBetStarted,
                     </div>
                 </div>
                 <div className='bg-[#26204C] h-full w-full rounded-xl flex items-start justify-between p-2 gap-x-2'>
-                    <div className='basis-[49.5%] h-[60%] rounded-lg bg-[#1A1534]'>
-                        <div className='p-1 flex items-center justify-between relative'>
-                            <button className='h-6 w-6 bg-[#221D44] rounded-lg flex items-center justify-center'><div className='h-[2px] rounded-full w-[50%] bg-[#928AC1]' /></button>
+                    <div className={clsx('relative basis-[49.5%] h-[60%] rounded-lg bg-[#1A1534] w-[100px]', {
+                    })}>
+                        <div className='p-1 flex items-center justify-between'>
+                            <button className={clsx('h-6 w-6 bg-[#221D44] rounded-lg flex items-center justify-center', {
+                                '!w-10': isMobile
+                            })}><div className='h-[2px] rounded-full w-[50%] bg-[#928AC1]' /></button>
                             <div className='flex items-center justify-center gap-x-1'>
-
-                                <input defaultValue={value} onChange={(e) => setValue(e.target.value)} className='bg-transparent outline-none text-white text-center' />
-
+                                <input defaultValue={value} onChange={(e) => setValue(e.target.value)} className='bg-transparent outline-none w-full text-white text-center' />
                             </div>
-                            <button className='h-6 w-6 bg-[#221D44] rounded-lg flex items-center justify-center text-[#928AC1] text-[17px]'>+</button>
+                            <button className={clsx('h-6 w-6 bg-[#221D44] rounded-lg flex items-center justify-center text-[#928AC1] text-[17px]', {
+                                '!w-10': isMobile
+                            })}>+</button>
                         </div>
                         <div className='w-full h-[1px] bg-[#1A1534] mt-1' />
                         <div className='p-1 flex justify-between -translate-y-[1px]'>

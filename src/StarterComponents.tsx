@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import longMusic from '../public/music/longMusic.mp3'
+import clsx from 'clsx'
 
 interface Props {
     targetTime: string[]
@@ -9,9 +10,10 @@ interface Props {
     handleAdd: () => void
     handleStart: () => void
     setBalance: (value: React.SetStateAction<number>) => void
+    isMobile: boolean
 }
 
-export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value, handleAdd, handleStart, setBalance }) => {
+export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value, handleAdd, handleStart, setBalance, isMobile }) => {
     const { i18n } = useTranslation()
     const audio = new Audio(longMusic)
 
@@ -34,10 +36,15 @@ export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value
             <h2 className='text-[36px] mb-12'>LuckyJet Admin</h2>
             <div className='flex space-x-12'>
                 <div className='flex items-start gap-x-8'>
-                    <div>
+                    <div className={clsx('', {
+                        'w-1/2': isMobile
+                    })}>
                         <form onSubmit={handleSubmit}>
                             <input placeholder='Coefficiente' value={value} onChange={(e) => setValue(e.target.value)} className='rounded-md p-2' />
-                            <button type='submit' className='bg-white ml-2 p-2 rounded-md'>Add coefficente</button>
+                            <button type='submit' className={clsx('bg-white p-2 rounded-md', {
+                                'ml-2': !isMobile,
+                                'mt-2': isMobile
+                            })}>Add coefficente</button>
                         </form>
                         <div>
                             <input placeholder='balance' className='mt-2 w-full rounded-md p-2' onChange={(e) => setBalance(Number(e.target.value))} />
