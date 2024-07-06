@@ -17,3 +17,4 @@ export const BottomClouds: React.FC<Props> = ({ isMobile = false }) => {
         </div>
     )
 }
+// 
