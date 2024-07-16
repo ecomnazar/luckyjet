@@ -8,7 +8,7 @@ interface Props {
     value: string
     setValue: (value: React.SetStateAction<string>) => void
     handleAdd: () => void
-    handleStart: () => void
+    handleStart: (currenct: string) => void
     setBalance: (value: React.SetStateAction<number>) => void
     isMobile: boolean
 }
@@ -22,10 +22,10 @@ export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value
         handleAdd()
     }
 
-    const onStart = (lang: string) => {
+    const onStart = (lang: string, currency: string) => {
         i18n.changeLanguage(lang)
         audio.play();
-        handleStart()
+        handleStart(currency)
         audio.addEventListener('ended', () => {
             audio.play()
         })
@@ -50,14 +50,16 @@ export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value
                             <input placeholder='balance' className='mt-2 w-full rounded-md p-2' onChange={(e) => setBalance(Number(e.target.value))} />
                         </div>
                         <div className=''>
-                            <button onClick={() => onStart('tr')} className='bg-white mt-2 rounded-md p-2 w-full'>START (TURKEY)</button>
-                            <button onClick={() => onStart('es')} className='bg-white mt-2 rounded-md p-2 w-full'>START (SPAIN $)</button>
-                            <button onClick={() => onStart('estwo')} className='bg-white mt-2 rounded-md p-2 w-full'>START (SPAIN AR$)</button>
-                            <button onClick={() => onStart('pt')} className='bg-white mt-2 rounded-md p-2 w-full'>START (PORTUGAL R$)</button>
-                            <button onClick={() => onStart('uz')} className='bg-white mt-2 rounded-md p-2 w-full'>START (UZBEK)</button>
-                            <button onClick={() => onStart('fr')} className='bg-white mt-2 rounded-md p-2 w-full'>START (FRANCY)</button>
-                            <button onClick={() => onStart('en')} className='bg-white mt-2 rounded-md p-2 w-full'>START (ENGLISH $)</button>
-                            <button onClick={() => onStart('enphp')} className='bg-white mt-2 rounded-md p-2 w-full'>START (ENGLISH PHP)</button>
+                            <button onClick={() => onStart('tr', '₺')} className='bg-white mt-2 rounded-md p-2 w-full'>START (TURKEY)</button>
+                            <button onClick={() => onStart('es', '$')} className='bg-white mt-2 rounded-md p-2 w-full'>START (SPAIN $)</button>
+                            <button onClick={() => onStart('estwo', 'AR$')} className='bg-white mt-2 rounded-md p-2 w-full'>START (SPAIN AR$)</button>
+                            <button onClick={() => onStart('pt', 'R$')} className='bg-white mt-2 rounded-md p-2 w-full'>START (PORTUGAL R$)</button>
+                            <button onClick={() => onStart('uz', 'S')} className='bg-white mt-2 rounded-md p-2 w-full'>START (UZBEK)</button>
+                            <button onClick={() => onStart('fr', 'XOF')} className='bg-white mt-2 rounded-md p-2 w-full'>START (FRANCY)</button>
+                            <button onClick={() => onStart('en', '$')} className='bg-white mt-2 rounded-md p-2 w-full'>START (ENGLISH $)</button>
+                            <button onClick={() => onStart('enphp', 'PHP')} className='bg-white mt-2 rounded-md p-2 w-full'>START (ENGLISH PHP)</button>
+                            <button onClick={() => onStart('az', 'AZN')} className='bg-white mt-2 rounded-md p-2 w-full'>START (AZERBAIJAN AZN)</button>
+                            <button onClick={() => onStart('kg', 'KGS')} className='bg-white mt-2 rounded-md p-2 w-full'>START (KYRGYZYSTAN KGS)</button>
 
                         </div>
                     </div>

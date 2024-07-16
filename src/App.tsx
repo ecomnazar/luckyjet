@@ -53,7 +53,7 @@ const App = () => {
   const [counter, setCounter] = React.useState(0)
 
   // const isMobile = window.innerWidth < 768 ? true : false
-  const isMobile = true
+  const isMobile = false
 
   const [totalBahis, setTotalBahis] = React.useState(Math.floor(Math.random() * 300) + 300)
 
@@ -80,11 +80,11 @@ const App = () => {
   const handleFinish = () => {
     const sliced = Number(firstValue.split(' ')[0])
     const slicedSecond = Number(secondValue.split(' ')[0])
-    if (firstValue !== `0.2 ${t('currency')}}` && isFirstBetStarted) {
+    if (firstValue !== `0.2 ${i18n.language === 'az' ? '₼' : t('currency')}}` && isFirstBetStarted) {
       setBalance((prev) => prev - sliced)
       setIsFirstBetStarted(false)
     }
-    if (secondValue !== `0.2 ${t('currency')}}` && isSecondBetStarted) {
+    if (secondValue !== `0.2 ${i18n.language === 'az' ? '₼' : t('currency')}}` && isSecondBetStarted) {
       setBalance((prev) => prev - slicedSecond)
       setIsSecondBetStarted(false)
     }
@@ -137,9 +137,9 @@ const App = () => {
     setValue('')
   }
 
-  const handleStart = () => {
-    setFirstValue(`0.2 ${i18n.language === 'tr' ? '₺' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'pt' ? 'R$' : i18n.language === 'enphp' ? 'PHP' : i18n.language === 'estwo' ? 'AR$' : '$'}`)
-    setSecondValue(`0.2 ${i18n.language === 'tr' ? '₺' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'pt' ? 'R$' : i18n.language === 'enphp' ? 'PHP' : i18n.language === 'estwo' ? 'AR$' : '$'}`)
+  const handleStart = (currency: string) => {
+    setFirstValue(`0.2 ${i18n.language === 'az' ? '₼' : currency}`)
+    setSecondValue(`0.2 ${i18n.language === 'az' ? '₼' : currency}`)
     setIsStarted(true)
     setTargetTime([...targetTime, '2.45'])
   }
@@ -216,15 +216,13 @@ const App = () => {
     </div>
   }
 
-
-
   return (
     <div className='w-screen h-screen bg-[#0A0F1D] pt-2'>
       {/* #121728 */}
       <div className='px-3'>
         <img src={
 
-          `/header${i18n.language === 'tr' ? 'Tr' : i18n.language === 'pt' ? 'Pt' : i18n.language === 'uz' ? 'Uz' : i18n.language === 'fr' ? 'Fr' : i18n.language === 'es' ? 'Es' : 'Eng'
+          `/header${i18n.language === 'tr' ? 'Tr' : i18n.language === 'pt' ? 'Pt' : i18n.language === 'uz' ? 'Uz' : i18n.language === 'fr' ? 'Fr' : i18n.language === 'es' ? 'Es' : i18n.language === 'az' ? 'Az' : i18n.language === 'kg' ? 'Kg' : 'Eng'
 
           }.png`} />
       </div>
@@ -286,7 +284,7 @@ const App = () => {
             <li>
               <div className='bg-[#252D43] p-1 flex gap-x-2 rounded-xl pl-2'>
                 <div className='flex flex-col items-end'>
-                  <div className='flex items-center gap-x-1 text-[#97A5CA] font-sans text-[12px]'>{i18n.language === 'tr' ? 'TRY' : i18n.language === 'pt' ? 'BRL' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'en' ? '$' : i18n.language === 'enphp' ? 'PHP' : i18n.language === 'es' ? '$' : i18n.language === 'estwo' ? 'AR$' : 'USD'}</div>
+                  <div className='flex items-center gap-x-1 text-[#97A5CA] font-sans text-[12px]'>{i18n.language === 'tr' ? 'TRY' : i18n.language === 'pt' ? 'BRL' : i18n.language === 'uz' ? 'S' : i18n.language === 'fr' ? 'XOF' : i18n.language === 'en' ? '$' : i18n.language === 'enphp' ? 'PHP' : i18n.language === 'es' ? '$' : i18n.language === 'estwo' ? 'AR$' : i18n.language === 'az' ? 'AZN' : i18n.language === 'kg' ? 'KGS' : 'USD'}</div>
                   <p className='text-white font-sans text-[14px]'>{formatBalance(Number(balance))}</p>
                 </div>
                 <div className='bg-[#50A761] text-white font-sans rounded-lg p-2 text-[13px]'>{t('paraYatir')}</div>
@@ -299,7 +297,7 @@ const App = () => {
       {/* <img className='w-full' src='/header.jpeg' /> */}
       <div className='flex items-start justify-between h-[88vh]'>
         <div className='w-[16%] overflow-y-scroll bg-[#151B2E] h-full rounded-[14px] ml-4'>
-          <img src={`/${i18n.language === 'tr' ? 'left' : i18n.language === 'pt' ? 'leftPt' : i18n.language === 'uz' ? 'leftUz' : i18n.language === 'fr' ? 'leftFr' : i18n.language === 'es' ? 'leftEs1' : 'leftEng'}.png`} className='w-full object-cover' />
+          <img src={`/${i18n.language === 'tr' ? 'left' : i18n.language === 'pt' ? 'leftPt' : i18n.language === 'uz' ? 'leftUz' : i18n.language === 'fr' ? 'leftFr' : i18n.language === 'es' ? 'leftEs1' : i18n.language === 'az' ? 'leftAz' : i18n.language === 'kg' ? 'leftKg' : 'leftEng'}.png`} className='w-full object-cover' />
         </div>
         <div className='bg-[#141026] w-[83%] mr-4 h-[88vh] overflow-hidden ml-4'>
           <div className='flex items-start'>

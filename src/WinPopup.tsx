@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const WinPopup: React.FC<Props> = ({ firstWinPopup, secondWinPopup }) => {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
 
     return (
         <div className='absolute z-[999] top-0 left-1/2 -translate-x-1/2 space-y-2'>
@@ -23,7 +23,7 @@ export const WinPopup: React.FC<Props> = ({ firstWinPopup, secondWinPopup }) => 
                     <h3 className='text-white text-[19px]'>x{firstWinPopup.coff}</h3>
                 </div>
                 <div className='bg-gradient-to-r from-[#592AF2] via-[#713DF0] to-[#8850ED] h-[90%] w-1/2 rounded-xl flex flex-col items-center justify-center'>
-                    <h4 className='text-white text-[17px]'>{(firstWinPopup.amount * firstWinPopup.coff).toFixed(2)} {t('currency')}</h4>
+                    <h4 className='text-white text-[17px]'>{(firstWinPopup.amount * firstWinPopup.coff).toFixed(2)} {i18n.language === 'az' ? '₼' : t('currency')}</h4>
                     <p className='text-white text-[13px] font-normal font-sans'>{t('kazanciniz')}</p>
                 </div>
             </div>
@@ -38,7 +38,7 @@ export const WinPopup: React.FC<Props> = ({ firstWinPopup, secondWinPopup }) => 
                     <h3 className='text-white text-[19px]'>x{secondWinPopup.coff}</h3>
                 </div>
                 <div className='bg-gradient-to-r from-[#592AF2] via-[#713DF0] to-[#8850ED] h-[90%] w-1/2 rounded-xl flex flex-col items-center justify-center'>
-                    <h4 className='text-white text-[17px]'>{(secondWinPopup.amount * secondWinPopup.coff).toFixed(2)} {t('currency')}</h4>
+                    <h4 className='text-white text-[17px]'>{(secondWinPopup.amount * secondWinPopup.coff).toFixed(2)} {i18n.language === 'az' ? '₼' : t('currency')}</h4>
                     <p className='text-white text-[13px] font-normal font-sans'>{t('kazanciniz')}</p>
                 </div>
             </div>

@@ -8,6 +8,8 @@ import ptJSON from "./locales/pt.json";
 import uzJSON from "./locales/uz.json";
 import frJSON from "./locales/fr.json";
 import enJSON from "./locales/en.json";
+import azJSON from "./locales/az.json";
+import kgJSON from "./locales/kg.json";
 import enphpJSON from "./locales/enphp.json";
 
 i18n.use(initReactI18next).init({
@@ -18,6 +20,8 @@ i18n.use(initReactI18next).init({
     uz: { ...uzJSON },
     fr: { ...frJSON },
     en: { ...enJSON },
+    az: { ...azJSON },
+    kg: { ...kgJSON },
     estwo: { ...estwoJSON },
     enphp: { ...enphpJSON },
   }, // Where we're gonna put translations' files
