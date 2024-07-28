@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import longMusic from '../public/music/longMusic.mp3'
 import clsx from 'clsx'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
     targetTime: string[]
@@ -16,6 +17,7 @@ interface Props {
 export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value, handleAdd, handleStart, setBalance, isMobile }) => {
     const { i18n } = useTranslation()
     const audio = new Audio(longMusic)
+    const navigate = useNavigate()
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
@@ -29,7 +31,64 @@ export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value
         audio.addEventListener('ended', () => {
             audio.play()
         })
+        navigate(`/${lang.slice(0, 2)}`)
     }
+
+    const langs = [
+        {
+            prefix: 'tr',
+            currency: '₺',
+            name: 'Turkey',
+        },
+        {
+            prefix: 'es',
+            currency: '$',
+            name: 'Spain $',
+        },
+        {
+            prefix: 'estwo',
+            currency: 'AR$',
+            name: 'Spain AR$',
+        },
+        {
+            prefix: 'pt',
+            currency: 'R$',
+            name: 'Portugal R$',
+        },
+        {
+            prefix: 'uz',
+            currency: 'S',
+            name: 'Uzbek',
+        },
+        {
+            prefix: 'fr',
+            currency: 'XOF',
+            name: 'Francy',
+        },
+        {
+            prefix: 'en',
+            currency: '$',
+            name: 'English $',
+        },
+        {
+            prefix: 'enphp',
+            currency: 'PHP',
+            name: 'English PHP',
+        },
+        {
+            prefix: 'az',
+            currency: 'AZN',
+            name: 'Azerbaijan AZN',
+        },
+        {
+            prefix: 'kg',
+            currency: 'KGS',
+            name: 'Kyrgyzstan KGS',
+        },
+    ]
+
+    console.log();
+
 
     return (
         <div className='w-screen h-screen bg-gray-200 flex flex-col items-center justify-center'>
@@ -50,8 +109,13 @@ export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value
                             <input placeholder='balance' className='mt-2 w-full rounded-md p-2' onChange={(e) => setBalance(Number(e.target.value))} />
                         </div>
                         <div className=''>
-                            <button onClick={() => onStart('tr', '₺')} className='bg-white mt-2 rounded-md p-2 w-full'>START (TURKEY)</button>
-                            <button onClick={() => onStart('es', '$')} className='bg-white mt-2 rounded-md p-2 w-full'>START (SPAIN $)</button>
+                            {langs.map((item, index) => {
+                                const { prefix } = item
+                                const startOfPrefix = prefix.slice(0, 2)
+                                if (window.location.pathname !== `/${startOfPrefix}`) return null
+                                return <button key={index} onClick={() => onStart(item.prefix, item.currency)} className='bg-white mt-2 rounded-md p-2 w-full'>START ({item.name})</button>
+                            })}
+                            {/* <button onClick={() => onStart('es', '$')} className='bg-white mt-2 rounded-md p-2 w-full'>START (SPAIN $)</button>
                             <button onClick={() => onStart('estwo', 'AR$')} className='bg-white mt-2 rounded-md p-2 w-full'>START (SPAIN AR$)</button>
                             <button onClick={() => onStart('pt', 'R$')} className='bg-white mt-2 rounded-md p-2 w-full'>START (PORTUGAL R$)</button>
                             <button onClick={() => onStart('uz', 'S')} className='bg-white mt-2 rounded-md p-2 w-full'>START (UZBEK)</button>
@@ -59,7 +123,7 @@ export const StarterComponents: React.FC<Props> = ({ setValue, targetTime, value
                             <button onClick={() => onStart('en', '$')} className='bg-white mt-2 rounded-md p-2 w-full'>START (ENGLISH $)</button>
                             <button onClick={() => onStart('enphp', 'PHP')} className='bg-white mt-2 rounded-md p-2 w-full'>START (ENGLISH PHP)</button>
                             <button onClick={() => onStart('az', 'AZN')} className='bg-white mt-2 rounded-md p-2 w-full'>START (AZERBAIJAN AZN)</button>
-                            <button onClick={() => onStart('kg', 'KGS')} className='bg-white mt-2 rounded-md p-2 w-full'>START (KYRGYZYSTAN KGS)</button>
+                            <button onClick={() => onStart('kg', 'KGS')} className='bg-white mt-2 rounded-md p-2 w-full'>START (KYRGYZYSTAN KGS)</button> */}
 
                         </div>
                     </div>

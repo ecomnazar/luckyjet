@@ -5,6 +5,8 @@ import './index.css'
 import App from './App'
 import { LoginPage } from './LoginPage'
 import './i18n'
+import { Redirect } from './Redirect'
+import { WithdrawPage } from './WithdrawPage'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -12,10 +14,18 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       createBrowserRouter([
         {
           path: '/',
+          element: <Redirect />
+        },
+        {
+          path: '/:lang/withdraw',
+          element: <WithdrawPage />
+        },
+        {
+          path: '/:lang',
           element: <App />
         },
         {
-          path: '/login',
+          path: '/:lang/login',
           element: <LoginPage />
         }
       ])

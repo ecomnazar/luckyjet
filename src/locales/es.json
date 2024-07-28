@@ -29,6 +29,25 @@
         "fantasy": "Deporte de fantasía",
         "dahaFazla": "Màs",
         "paraYatir": "Depositar",
-        "currency": "$"
+        "currency": "$",
+        "retirar": "Retirar",
+        "Historial De Apuestas": "Historial De Apuestas",
+        "Ajustes": "Ajustes",
+        "Desglose": "Desglose",
+        "Salir": "Salir",
+        "Gracias": "Gracias",
+        "Su solicitud de retiro ha sido aceptada.": "Su solicitud de retiro ha sido aceptada.",
+        "Metodos de page para la region": "Metodos de page para la region",
+        "colombia": "Colombia",
+        "Criptomoneda": "Criptomoneda",
+        "Retirar": "Retirar",
+        "Limite de un retito:": "Limite de un retito:",
+        "withdrawCurrency": "$",
+        "retirarButton": "Retirar",
+        "detalles": "Detalles",
+        "Todos los derechos estas reservados y protegidos por la loy": "Todos los derechos estas reservados y protegidos por la loy",
+        "Todos": "Todos",
+        "Historial de pagos": "Historial de pagos",
+        "Retiros": "Retiros"
     }
 }
